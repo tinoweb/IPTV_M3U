@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV Stream Checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <i class="fas fa-tv"></i>
+                <h1>IPTV Stream Checker</h1>
+            </div>
+            <div class="header-right">
+                <a href="index.html" class="btn-link">
+                    <i class="fas fa-home"></i> Voltar ao Player
+                </a>
+                <div class="theme-switch">
+                    <input type="checkbox" id="themeSwitch">
+                    <label for="themeSwitch">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="checker-main">
+            <div class="checker-content">
+                <div class="checker-section">
+                    <div class="section-header">
+                        <i class="fas fa-link"></i>
+                        <h2>Verificador de Links</h2>
+                    </div>
+                    
+                    <div class="input-area">
+                        <textarea id="linksInput" 
+                            placeholder="Cole aqui seus links (um por linha)&#10;Exemplo:&#10;http://exemplo1.com/stream.m3u8&#10;http://exemplo2.com/live.m3u8"
+                        ></textarea>
+                        
+                        <div class="button-group">
+                            <button id="checkLinks" class="btn-primary">
+                                <i class="fas fa-check-circle"></i> Verificar Links
+                            </button>
+                            <button id="clearLinks" class="btn-secondary">
+                                <i class="fas fa-trash"></i> Limpar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="status-section">
+                        <div class="progress-bar">
+                            <div class="progress" id="checkProgress"></div>
+                        </div>
+                        <div class="status-info">
+                            <span id="progressText">0 de 0 links verificados</span>
+                            <div class="status-counts">
+                                <span class="status-item online">
+                                    <i class="fas fa-check-circle"></i>
+                                    Online: <span id="onlineCount">0</span>
+                                </span>
+                                <span class="status-item offline">
+                                    <i class="fas fa-times-circle"></i>
+                                    Offline: <span id="offlineCount">0</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-section">
+                        <div class="results-tabs">
+                            <button class="tab-button active" data-tab="working">
+                                <i class="fas fa-check"></i> Funcionando
+                            </button>
+                            <button class="tab-button" data-tab="all">
+                                <i class="fas fa-list"></i> Todos
+                            </button>
+                        </div>
+
+                        <div class="results-content">
+                            <div class="tab-content active" id="workingLinks">
+                                <div class="links-list" id="workingLinksList"></div>
+                                <button id="copyWorkingLinks" class="btn-primary">
+                                    <i class="fas fa-copy"></i> Copiar Links Funcionando
+                                </button>
+                            </div>
+                            <div class="tab-content" id="allLinks">
+                                <div class="links-list" id="allLinksList"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button id="saveButton" class="save-button">
+        <i class="fas fa-save"></i> Salvar Canais Online
+    </button>
+
+    <script src="checker.js"></script>
+</body>
+</html>

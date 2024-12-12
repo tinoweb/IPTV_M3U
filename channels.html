@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canais - IPTV Player</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-tv"></i> IPTV Stream Player</h1>
+        <div class="header-controls">
+            <a href="index.html" class="btn-secondary">
+                <i class="fas fa-play"></i> Player
+            </a>
+            <a href="checker.html" class="btn-secondary">
+                <i class="fas fa-link"></i> Verificador
+            </a>
+            <div class="theme-switch">
+                <input type="checkbox" id="themeSwitch">
+                <label for="themeSwitch">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="channels-container">
+            <div class="channels-header">
+                <h2>Canais Disponíveis</h2>
+                <div class="channels-controls">
+                    <input type="text" id="searchChannel" placeholder="Buscar canal...">
+                    <select id="groupFilter">
+                        <option value="">Todos os grupos</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="channels-grid" id="channelsGrid">
+                <!-- Channels will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="channels.js"></script>
+</body>
+</html>

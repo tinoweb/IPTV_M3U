@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /sobre
+Allow: /tutorial
+Allow: /termos
+Allow: /privacidade
+
+Sitemap: https://seudominio.com/sitemap.xml

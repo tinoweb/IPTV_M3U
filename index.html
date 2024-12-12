@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>IPTV Player Online - Assista Canais de TV ao Vivo Grátis | Stream Player</title>
+    <meta name="description" content="Assista TV online grátis com nosso player IPTV. Streaming de canais ao vivo, fácil de usar, sem downloads. TV digital em HD direto no seu navegador.">
+    <meta name="keywords" content="iptv player, tv online, canais ao vivo, streaming tv, player m3u, lista iptv, tv grátis, assistir tv online, canais de tv, iptv brasil">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seudominio.com/">
+    <meta property="og:title" content="IPTV Player Online - TV ao Vivo Grátis">
+    <meta property="og:description" content="Assista TV online grátis com nosso player IPTV. Streaming de canais ao vivo em HD direto no seu navegador.">
+    <meta property="og:image" content="https://seudominio.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://seudominio.com/">
+    <meta property="twitter:title" content="IPTV Player Online - TV ao Vivo Grátis">
+    <meta property="twitter:description" content="Assista TV online grátis com nosso player IPTV. Streaming de canais ao vivo em HD direto no seu navegador.">
+    <meta property="twitter:image" content="https://seudominio.com/images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Canonical URL -->
+    <meta rel="canonical" href="https://seudominio.com/">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "IPTV Player Online",
+      "description": "Player de IPTV online para assistir canais de TV ao vivo gratuitamente",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header com H1 otimizado para SEO -->
+    <header class="app-header">
+        <div class="header-left">
+            <i class="fas fa-tv"></i>
+            <h1>IPTV Player Online - Assista TV ao Vivo Grátis</h1>
+        </div>
+        <div class="header-right">
+            <a href="checker.html" class="btn-link">
+                <i class="fas fa-link"></i> Verificador de Links
+            </a>
+            <div class="theme-switch">
+                <input type="checkbox" id="themeSwitch" aria-label="Alternar tema claro/escuro">
+                <label for="themeSwitch">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar com lista de canais -->
+        <aside class="sidebar" role="complementary">
+            <div class="sidebar-section">
+                <h2>Canais Salvos</h2>
+                <div id="saved-channels" class="channels-list" role="list"></div>
+            </div>
+        </aside>
+
+        <!-- Área principal com player -->
+        <main class="player-area" role="main">
+            <div class="player-container">
+                <video id="videoPlayer" controls aria-label="Player de vídeo"></video>
+                <div class="player-overlay">
+                    <div class="stream-info">
+                        <div id="current-info"></div>
+                        <div class="quality-info">
+                            <span id="currentQuality"></span>
+                            <span id="streamStats"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Seção de entrada de URL -->
+            <section class="input-section">
+                <div class="url-input-group">
+                    <input type="text" id="stream-url" 
+                           placeholder="URL do Stream" 
+                           aria-label="URL do stream">
+                    <button id="check-stream" class="btn-primary">
+                        <i class="fas fa-play"></i> Reproduzir
+                    </button>
+                </div>
+                <div class="playlist-input-group">
+                    <input type="text" id="m3uInput" 
+                           placeholder="URL da Playlist M3U" 
+                           aria-label="URL da playlist M3U">
+                    <button id="loadBtn" class="btn-primary">
+                        <i class="fas fa-download"></i> Carregar Playlist
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Timer -->
+    <div id="timerModal" class="modal">
+        <div class="modal-content">
+            <h2>Timer para Desligar</h2>
+            <div class="timer-options">
+                <button data-time="30">30 min</button>
+                <button data-time="60">1 hora</button>
+                <button data-time="120">2 horas</button>
+                <button data-time="custom">Personalizado</button>
+            </div>
+            <input type="number" id="customTime" placeholder="Minutos" min="1" style="display: none;">
+            <div class="modal-buttons">
+                <button id="startTimer">Iniciar</button>
+                <button id="cancelTimer">Cancelar</button>
+                <button id="clearTimer" style="display: none;">Limpar Timer</button>
+            </div>
+            <div id="timerDisplay" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar playlist -->
+    <div id="addPlaylistModal" class="modal">
+        <div class="modal-content">
+            <h2>Adicionar Nova Playlist</h2>
+            <input type="text" id="newPlaylistName" placeholder="Nome da Playlist">
+            <input type="text" id="newPlaylistUrl" placeholder="URL da Playlist">
+            <div class="modal-buttons">
+                <button id="confirmAddPlaylist" class="btn-primary">Adicionar</button>
+                <button id="cancelAddPlaylist" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de atalhos do teclado -->
+    <div id="shortcutsModal" class="modal">
+        <div class="modal-content">
+            <h2>Atalhos do Teclado</h2>
+            <div class="shortcuts-list">
+                <div class="shortcut-item">
+                    <span class="key">Espaço</span>
+                    <span class="description">Play/Pause</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="key">←</span>
+                    <span class="description">Canal Anterior</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="key">→</span>
+                    <span class="description">Próximo Canal</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="key">↑</span>
+                    <span class="description">Aumentar Volume</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="key">↓</span>
+                    <span class="description">Diminuir Volume</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="key">M</span>
+                    <span class="description">Mutar/Desmutar</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="key">F</span>
+                    <span class="description">Tela Cheia</span>
+                </div>
+            </div>
+            <button id="closeShortcuts" class="btn-secondary">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal para importar playlists -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <h2>Importar Playlists</h2>
+            <p>Cole aqui o código de exportação das playlists:</p>
+            <textarea id="importText" rows="6"></textarea>
+            <div class="modal-buttons">
+                <button id="confirmImport" class="btn-primary">Importar</button>
+                <button id="cancelImport" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão flutuante para mobile -->
+    <button id="mobileChannelsBtn" 
+            class="mobile-channels-btn" 
+            aria-label="Abrir lista de canais">
+        <i class="fas fa-list"></i>
+    </button>
+
+    <!-- Modal mobile com semântica adequada -->
+    <div id="mobileChannelsModal" 
+         class="mobile-channels-modal" 
+         role="dialog" 
+         aria-labelledby="modalTitle">
+        <div class="mobile-channels-content">
+            <div class="mobile-channels-header">
+                <h2 id="modalTitle">Canais Salvos</h2>
+                <button class="close-modal-btn" aria-label="Fechar modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="mobile-channels-list" class="mobile-channels-list" role="list"></div>
+        </div>
+    </div>
+
+    <!-- Footer com links relevantes -->
+    <footer class="app-footer">
+        <nav class="footer-nav">
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="/sobre">Sobre o Player</a></li>
+                <li><a href="/tutorial">Como Usar</a></li>
+                <li><a href="/termos">Termos de Uso</a></li>
+                <li><a href="/privacidade">Política de Privacidade</a></li>
+            </ul>
+        </nav>
+        <p> 2024 IPTV Player Online - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="app.js" defer></script>
+</body>
+</html>
