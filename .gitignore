@@ -35,3 +35,6 @@ logs
 # Optional: Package manager locks
 # package-lock.json
 # yarn.lock
+
+# Local Netlify folder
+.netlify

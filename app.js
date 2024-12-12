@@ -98,32 +98,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Funções para gerenciar canais no localStorage
-    function getSavedChannels() {
-        const channels = localStorage.getItem('savedChannels');
-        return channels ? JSON.parse(channels) : [];
-    }
-
-    function saveChannel(channel) {
-        const channels = getSavedChannels();
-        // Verifica se o canal já existe
-        const exists = channels.some(ch => ch.url === channel.url);
-        if (!exists) {
-            channels.push(channel);
-            localStorage.setItem('savedChannels', JSON.stringify(channels));
-            showNotification('Canal salvo com sucesso!', 'success');
-            displaySavedChannels(); // Atualiza a lista de canais
-        } else {
-            showNotification('Este canal já está salvo!', 'info');
+    // Função para carregar canais do arquivo JSON
+    async function getSavedChannels() {
+        try {
+            const response = await fetch('channels.json');
+            const data = await response.json();
+            return data.savedChannels || [];
+        } catch (error) {
+            console.error('Erro ao carregar canais:', error);
+            showNotification('Erro ao carregar canais do arquivo', 'error');
+            return [];
         }
     }
 
-    function removeChannel(url) {
-        const channels = getSavedChannels();
-        const updatedChannels = channels.filter(ch => ch.url !== url);
-        localStorage.setItem('savedChannels', JSON.stringify(updatedChannels));
-        showNotification('Canal removido!', 'success');
-        displaySavedChannels(); // Atualiza a lista de canais
+    // Função para salvar um canal
+    async function saveChannel(channel) {
+        try {
+            const channels = await getSavedChannels();
+            const exists = channels.some(ch => ch.url === channel.url);
+            if (!exists) {
+                channels.push(channel);
+                const data = { savedChannels: channels };
+                const json = JSON.stringify(data, null, 2);
+                await fetch('channels.json', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: json
+                });
+                showNotification('Canal salvo com sucesso!', 'success');
+                displaySavedChannels(); // Atualiza a lista de canais
+            } else {
+                showNotification('Este canal já está salvo!', 'info');
+            }
+        } catch (error) {
+            console.error('Erro ao salvar canal:', error);
+            showNotification('Erro ao salvar canal', 'error');
+        }
+    }
+
+    // Função para remover um canal
+    async function removeChannel(url) {
+        try {
+            const channels = await getSavedChannels();
+            const updatedChannels = channels.filter(ch => ch.url !== url);
+            const data = { savedChannels: updatedChannels };
+            const json = JSON.stringify(data, null, 2);
+            await fetch('channels.json', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: json
+            });
+            showNotification('Canal removido!', 'success');
+            displaySavedChannels(); // Atualiza a lista de canais
+        } catch (error) {
+            console.error('Erro ao remover canal:', error);
+            showNotification('Erro ao remover canal', 'error');
+        }
     }
 
     // Making playChannel globally accessible
@@ -146,116 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Making removeChannel globally accessible
     window.removeChannel = function(url) {
-        const channels = getSavedChannels();
-        const updatedChannels = channels.filter(ch => ch.url !== url);
-        localStorage.setItem('savedChannels', JSON.stringify(updatedChannels));
-        displaySavedChannels();
-        showNotification('Canal removido com sucesso', 'success');
+        removeChannel(url);
     };
-
-    function displaySavedChannels() {
-        if (!savedChannelsContainer) return;
-
-        const channels = getSavedChannels();
-        savedChannelsContainer.innerHTML = '';
-
-        if (channels.length === 0) {
-            savedChannelsContainer.innerHTML = '<p>Nenhum canal salvo</p>';
-            return;
-        }
-
-        channels.forEach(channel => {
-            const channelDiv = document.createElement('div');
-            channelDiv.className = 'channel-item';
-            
-            // Create channel info
-            const channelInfo = document.createElement('span');
-            channelInfo.textContent = channel.name || 'Stream HLS';
-            
-            // Create buttons container
-            const buttonsDiv = document.createElement('div');
-            buttonsDiv.className = 'channel-buttons';
-            
-            // Create play button
-            const playBtn = document.createElement('button');
-            playBtn.innerHTML = '<i class="fas fa-play"></i> Play';
-            playBtn.addEventListener('click', () => window.playChannel(channel.url));
-            
-            // Create remove button
-            const removeBtn = document.createElement('button');
-            removeBtn.innerHTML = '<i class="fas fa-trash"></i> Remover';
-            removeBtn.addEventListener('click', () => window.removeChannel(channel.url));
-            
-            // Append buttons to container
-            buttonsDiv.appendChild(playBtn);
-            buttonsDiv.appendChild(removeBtn);
-            
-            // Append all elements to channel item
-            channelDiv.appendChild(channelInfo);
-            channelDiv.appendChild(buttonsDiv);
-            
-            savedChannelsContainer.appendChild(channelDiv);
-        });
-    }
-
-    // Função para verificar status do stream
-    async function checkStreamStatus(url) {
-        try {
-            const response = await fetch(url, { method: 'HEAD', timeout: 5000 });
-            return response.ok;
-        } catch (error) {
-            console.error('Erro ao verificar stream:', error);
-            return false;
-        }
-    }
-
-    // Função para checar e salvar um canal
-    async function checkAndSaveChannel() {
-        const urlInput = document.getElementById('stream-url');
-        const nameInput = document.getElementById('channel-name');
-        
-        if (!urlInput || !nameInput) return;
-
-        const url = urlInput.value.trim();
-        const name = nameInput.value.trim() || 'Canal sem nome';
-
-        if (!url) {
-            showNotification('Por favor, insira uma URL válida', 'error');
-            return;
-        }
-
-        showNotification('Verificando stream...', 'info');
-        const isOnline = await checkStreamStatus(url);
-
-        if (isOnline) {
-            const channel = {
-                name: name,
-                url: url,
-                dateAdded: new Date().toISOString()
-            };
-            saveChannel(channel);
-            showNotification('Stream verificado e salvo com sucesso!', 'success');
-        } else {
-            showNotification('Stream offline ou inválido!', 'error');
-        }
-    }
-
-    // Função para reproduzir um canal salvo
-    async function playChannel(url) {
-        try {
-            const success = await loadStream(url);
-            if (success) {
-                currentStreamUrl = url;
-                const channels = getSavedChannels();
-                currentChannel = channels.find(ch => ch.url === url);
-                updateCurrentInfo();
-                showNotification('Reproduzindo canal', 'success');
-            }
-        } catch (error) {
-            console.error('Erro ao reproduzir canal:', error);
-            showNotification('Erro ao reproduzir canal', 'error');
-        }
-    }
 
     // Função para atualizar informações do canal atual
     function updateCurrentInfo() {
@@ -314,6 +236,136 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log('Total de canais encontrados:', channels.length); // Log do total de canais
         return channels;
+    }
+
+    // Função para atualizar a lista de canais salvos
+    async function displaySavedChannels() {
+        const savedChannelsContainer = document.getElementById('saved-channels');
+        if (!savedChannelsContainer) return;
+
+        try {
+            const channels = await getSavedChannels();
+            savedChannelsContainer.innerHTML = '';
+
+            channels.forEach(channel => {
+                const channelDiv = document.createElement('div');
+                channelDiv.className = 'channel-item';
+                
+                const channelName = document.createElement('span');
+                channelName.textContent = channel.name;
+                channelName.className = 'channel-name';
+                
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.className = 'channel-buttons';
+                
+                const playButton = document.createElement('button');
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+                playButton.className = 'play-btn';
+                playButton.onclick = () => playChannel(channel.url);
+                
+                buttonsDiv.appendChild(playButton);
+                channelDiv.appendChild(channelName);
+                channelDiv.appendChild(buttonsDiv);
+                savedChannelsContainer.appendChild(channelDiv);
+            });
+
+            updateMobileChannelsList();
+        } catch (error) {
+            console.error('Erro ao exibir canais:', error);
+            showNotification('Erro ao exibir lista de canais', 'error');
+        }
+    }
+
+    // Função para atualizar a lista de canais mobile
+    async function updateMobileChannelsList() {
+        const mobileChannelsList = document.getElementById('mobile-channels-list');
+        if (!mobileChannelsList) return;
+
+        try {
+            const channels = await getSavedChannels();
+            mobileChannelsList.innerHTML = '';
+
+            channels.forEach(channel => {
+                const li = document.createElement('li');
+                li.className = 'mobile-channel-item';
+                
+                const channelName = document.createElement('span');
+                channelName.textContent = channel.name;
+                
+                const playButton = document.createElement('button');
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+                playButton.onclick = () => {
+                    playChannel(channel.url);
+                    mobileChannelsModal.classList.remove('show');
+                };
+                
+                li.appendChild(channelName);
+                li.appendChild(playButton);
+                mobileChannelsList.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Erro ao atualizar lista mobile:', error);
+            showNotification('Erro ao atualizar lista mobile', 'error');
+        }
+    }
+
+    // Função para verificar status do stream
+    async function checkStreamStatus(url) {
+        try {
+            const response = await fetch(url, { method: 'HEAD', timeout: 5000 });
+            return response.ok;
+        } catch (error) {
+            console.error('Erro ao verificar stream:', error);
+            return false;
+        }
+    }
+
+    // Função para checar e salvar um canal
+    async function checkAndSaveChannel() {
+        const urlInput = document.getElementById('stream-url');
+        const nameInput = document.getElementById('channel-name');
+        
+        if (!urlInput || !nameInput) return;
+
+        const url = urlInput.value.trim();
+        const name = nameInput.value.trim() || 'Canal sem nome';
+
+        if (!url) {
+            showNotification('Por favor, insira uma URL válida', 'error');
+            return;
+        }
+
+        showNotification('Verificando stream...', 'info');
+        const isOnline = await checkStreamStatus(url);
+
+        if (isOnline) {
+            const channel = {
+                name: name,
+                url: url,
+                dateAdded: new Date().toISOString()
+            };
+            saveChannel(channel);
+            showNotification('Stream verificado e salvo com sucesso!', 'success');
+        } else {
+            showNotification('Stream offline ou inválido!', 'error');
+        }
+    }
+
+    // Função para reproduzir um canal salvo
+    async function playChannel(url) {
+        try {
+            const success = await loadStream(url);
+            if (success) {
+                currentStreamUrl = url;
+                const channels = await getSavedChannels();
+                currentChannel = channels.find(ch => ch.url === url);
+                updateCurrentInfo();
+                showNotification('Reproduzindo canal', 'success');
+            }
+        } catch (error) {
+            console.error('Erro ao reproduzir canal:', error);
+            showNotification('Erro ao reproduzir canal', 'error');
+        }
     }
 
     // Event Listeners
@@ -405,35 +457,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileChannelsModal = document.getElementById('mobileChannelsModal');
     const closeModalBtn = document.querySelector('.close-modal-btn');
     const mobileChannelsList = document.getElementById('mobile-channels-list');
-
-    // Função para atualizar a lista de canais mobile
-    function updateMobileChannelsList() {
-        const channels = getSavedChannels();
-        mobileChannelsList.innerHTML = '';
-
-        channels.forEach(channel => {
-            const channelCard = document.createElement('div');
-            channelCard.className = 'channel-card';
-            
-            channelCard.innerHTML = `
-                <div class="channel-logo">
-                    ${channel.logo ? `<img src="${channel.logo}" alt="${channel.name}">` : 
-                    `<i class="fas fa-tv"></i>`}
-                </div>
-                <div class="channel-info">
-                    <h3>${channel.name}</h3>
-                    ${channel.group_title ? `<span class="channel-group">${channel.group_title}</span>` : ''}
-                </div>
-                <div class="channel-actions">
-                    <button onclick="playChannel('${channel.url}')" class="btn-play">
-                        <i class="fas fa-play"></i>
-                    </button>
-                </div>
-            `;
-            
-            mobileChannelsList.appendChild(channelCard);
-        });
-    }
 
     // Event listeners para o modal mobile
     mobileChannelsBtn.addEventListener('click', () => {
