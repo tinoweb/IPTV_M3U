@@ -238,42 +238,89 @@ document.addEventListener('DOMContentLoaded', () => {
         return channels;
     }
 
+    // Variáveis globais para pesquisa
+    let allChannels = [];
+    const searchInput = document.getElementById('channelSearch');
+    const clearSearchBtn = document.getElementById('clearSearch');
+
+    // Função para filtrar canais
+    function filterChannels(searchTerm) {
+        const term = searchTerm.toLowerCase().trim();
+        const savedChannelsContainer = document.getElementById('saved-channels');
+        if (!savedChannelsContainer) return;
+
+        savedChannelsContainer.innerHTML = '';
+        
+        const filteredChannels = allChannels.filter(channel => 
+            channel.name.toLowerCase().includes(term)
+        );
+
+        filteredChannels.forEach(channel => {
+            const channelDiv = document.createElement('div');
+            channelDiv.className = 'channel-item';
+            
+            const channelName = document.createElement('span');
+            channelName.className = 'channel-name';
+            
+            // Destacar o termo pesquisado se houver
+            if (term) {
+                const regex = new RegExp(`(${term})`, 'gi');
+                const highlightedText = channel.name.replace(regex, '<mark>$1</mark>');
+                channelName.innerHTML = highlightedText;
+            } else {
+                channelName.textContent = channel.name;
+            }
+            
+            const buttonsDiv = document.createElement('div');
+            buttonsDiv.className = 'channel-buttons';
+            
+            const playButton = document.createElement('button');
+            playButton.innerHTML = '<i class="fas fa-play"></i> Assistir';
+            playButton.className = 'play-btn';
+            playButton.onclick = () => playChannel(channel.url);
+            
+            buttonsDiv.appendChild(playButton);
+            channelDiv.appendChild(channelName);
+            channelDiv.appendChild(buttonsDiv);
+            savedChannelsContainer.appendChild(channelDiv);
+        });
+
+        // Mostrar/ocultar botão de limpar
+        if (clearSearchBtn) {
+            clearSearchBtn.classList.toggle('visible', searchTerm.length > 0);
+        }
+    }
+
     // Função para atualizar a lista de canais salvos
     async function displaySavedChannels() {
         const savedChannelsContainer = document.getElementById('saved-channels');
         if (!savedChannelsContainer) return;
 
         try {
-            const channels = await getSavedChannels();
-            savedChannelsContainer.innerHTML = '';
-
-            channels.forEach(channel => {
-                const channelDiv = document.createElement('div');
-                channelDiv.className = 'channel-item';
-                
-                const channelName = document.createElement('span');
-                channelName.textContent = channel.name;
-                channelName.className = 'channel-name';
-                
-                const buttonsDiv = document.createElement('div');
-                buttonsDiv.className = 'channel-buttons';
-                
-                const playButton = document.createElement('button');
-                playButton.innerHTML = '<i class="fas fa-play"></i>';
-                playButton.className = 'play-btn';
-                playButton.onclick = () => playChannel(channel.url);
-                
-                buttonsDiv.appendChild(playButton);
-                channelDiv.appendChild(channelName);
-                channelDiv.appendChild(buttonsDiv);
-                savedChannelsContainer.appendChild(channelDiv);
-            });
-
+            allChannels = await getSavedChannels(); // Atualiza a lista global
+            filterChannels(''); // Exibe todos os canais
             updateMobileChannelsList();
         } catch (error) {
             console.error('Erro ao exibir canais:', error);
             showNotification('Erro ao exibir lista de canais', 'error');
         }
+    }
+
+    // Event listeners para pesquisa
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            filterChannels(e.target.value);
+        });
+    }
+
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', () => {
+            if (searchInput) {
+                searchInput.value = '';
+                filterChannels('');
+                searchInput.focus();
+            }
+        });
     }
 
     // Função para atualizar a lista de canais mobile
@@ -487,28 +534,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const MENU_HIDE_DELAY = 3000; // 3 seconds
 
     function showMenus() {
-        clearTimeout(menuTimeout);
         const header = document.querySelector('header');
         const sidebar = document.querySelector('.sidebar');
-        const mainContent = document.querySelector('.main-content');
+        const playerArea = document.querySelector('.player-area');
+        
+        if (header) header.classList.remove('hidden');
+        if (sidebar) sidebar.classList.remove('hidden');
+        if (playerArea) playerArea.classList.remove('expanded');
+        
         document.body.classList.add('show-ui');
         document.body.classList.remove('hide-ui');
-        
-        header.classList.remove('hidden');
-        sidebar.classList.remove('hidden');
-        mainContent.classList.remove('expanded');
     }
 
     function hideMenus() {
         const header = document.querySelector('header');
         const sidebar = document.querySelector('.sidebar');
-        const mainContent = document.querySelector('.main-content');
+        const playerArea = document.querySelector('.player-area');
+        
+        if (header) header.classList.add('hidden');
+        if (sidebar) sidebar.classList.add('hidden');
+        if (playerArea) playerArea.classList.add('expanded');
+        
         document.body.classList.remove('show-ui');
         document.body.classList.add('hide-ui');
-        
-        header.classList.add('hidden');
-        sidebar.classList.add('hidden');
-        mainContent.classList.add('expanded');
     }
 
     function resetMenuTimer() {

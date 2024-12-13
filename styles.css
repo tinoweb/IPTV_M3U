@@ -132,10 +132,14 @@ body {
 }
 
 .sidebar-section h2 {
-    padding: 0 10px;
-    margin-bottom: 15px;
-    font-size: 15px;
-    color: #e0e0e0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Player Area */
@@ -247,78 +251,89 @@ input[type="text"]:focus {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 0 10px;
+    padding: 0 10px 10px 10px;
     max-height: calc(100vh - 120px); /* Account for header and section title */
     overflow-y: auto;
     padding-right: 5px; /* Add some padding for the scrollbar */
 }
 
 .channels-list::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 .channels-list::-webkit-scrollbar-track {
-    background: var(--background-dark);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
 }
 
 .channels-list::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
+    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    border-radius: 3px;
 }
 
 .channels-list::-webkit-scrollbar-thumb:hover {
-    background: var(--text-secondary);
+    background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
 }
 
 .channel-item {
-    background-color: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(30, 30, 30, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.channel-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+    border-color: var(--primary-color);
+    background: linear-gradient(145deg, rgba(45, 45, 45, 0.95), rgba(35, 35, 35, 0.95));
+}
+
+.channel-item .channel-name {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.channel-item .channel-quality {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 6px;
     border-radius: 4px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: inline-block;
+    margin-bottom: 8px;
 }
 
-.channel-item span {
-    color: #e0e0e0;
-    font-size: 14px;
-}
-
-.channel-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.channel-buttons button {
-    padding: 6px 12px;
+.channel-item button {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+    color: white;
     border: none;
-    border-radius: 3px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    width: 100%;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 0.85rem;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 4px;
-    transition: opacity 0.2s;
-    min-width: 85px;
     justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
 }
 
-.channel-buttons button:first-child {
-    background-color: #4CAF50;
-    color: white;
+.channel-item button:hover {
+    background: linear-gradient(45deg, #d32f2f, #b71c1c);
+    transform: scale(1.02);
 }
 
-.channel-buttons button:last-child {
-    background-color: #f44336;
-    color: white;
-}
-
-.channel-buttons button:hover {
-    opacity: 0.85;
-}
-
-.channel-buttons button i {
-    font-size: 12px;
+.channel-item button i {
+    font-size: 0.9rem;
 }
 
 /* Theme Switch */
@@ -550,6 +565,77 @@ input[type="text"]:focus {
 .save-button:hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
+}
+
+/* Estilo para highlight da pesquisa */
+mark {
+    background-color: rgba(33, 150, 243, 0.3);
+    color: var(--text-primary);
+    padding: 0 2px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* Estilos para o campo de pesquisa */
+.search-container {
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+.search-input-wrapper:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.2);
+}
+
+.search-icon {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+#channelSearch {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    padding: 4px 0;
+    outline: none;
+}
+
+#channelSearch::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.clear-search {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: none;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.clear-search:hover {
+    opacity: 1;
+}
+
+.clear-search.visible {
+    display: block;
 }
 
 /* Estilos para mobile */
