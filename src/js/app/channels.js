@@ -79,6 +79,29 @@ function filterChannels() {
     }
 }
 
+function createChannelElement(channel) {
+    const channelItem = document.createElement('div');
+    channelItem.className = 'channel-item';
+    channelItem.setAttribute('data-channel-id', channel.id);
+    
+    channelItem.innerHTML = `
+        <div class="channel-info">
+            <span class="channel-name">${channel.name}</span>
+            ${channel.quality ? `<span class="quality-tag">${channel.quality}</span>` : ''}
+        </div>
+        <button class="play-button" onclick="window.playChannel(${JSON.stringify(channel)})">
+            <i class="fas fa-play"></i>
+            Assistir
+            <span class="channel-status">
+                <span class="status-dot"></span>
+                Carregando...
+            </span>
+        </button>
+    `;
+    
+    return channelItem;
+}
+
 function renderChannels(channelsToRender) {
     if (!channelsList) {
         console.error('Lista de canais não encontrada');
@@ -88,18 +111,7 @@ function renderChannels(channelsToRender) {
     channelsList.innerHTML = '';
     
     channelsToRender.forEach(channel => {
-        const channelElement = document.createElement('div');
-        channelElement.className = `channel-item ${channel === activeChannel ? 'active' : ''}`;
-        
-        channelElement.innerHTML = `
-            <div class="channel-info">
-                <div class="channel-name">${channel.name}</div>
-            </div>
-            <button class="btn-watch" onclick="window.playChannel('${channel.url}')">
-                <i class="fas fa-play"></i>
-                Assistir
-            </button>
-        `;
+        const channelElement = createChannelElement(channel);
         
         channelElement.addEventListener('click', () => {
             setActiveChannel(channel);

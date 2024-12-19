@@ -195,7 +195,17 @@
         </section>
 
         <section class="player-section">
-            <div class="video-container">
+            <div class="player-container">
+                <div id="playerLoadingOverlay" class="player-loading-overlay">
+                    <div class="loading-content">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">
+                            <h3>Carregando Canal</h3>
+                            <p id="loadingChannelName"></p>
+                            <p class="loading-tip">Por favor, aguarde alguns instantes...</p>
+                        </div>
+                    </div>
+                </div>
                 <video id="videoPlayer" controls playsinline>
                     Seu navegador não suporta a reprodução de vídeos.
                 </video>

@@ -688,3 +688,156 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Atualizando o sistema de reprodução com feedback visual e tratamento de erros
+let currentChannel = null;
+let hls = null;
+
+export function initPlayer() {
+    const videoPlayer = document.getElementById('videoPlayer');
+    if (Hls.isSupported()) {
+        hls = new Hls({
+            debug: false,
+            enableWorker: true,
+            lowLatencyMode: true,
+            backBufferLength: 90
+        });
+        
+        hls.attachMedia(videoPlayer);
+
+        hls.on(Hls.Events.ERROR, (event, data) => {
+            if (data.fatal) {
+                switch (data.type) {
+                    case Hls.ErrorTypes.NETWORK_ERROR:
+                        showNotification('error', 'Erro de conexão', 'Não foi possível conectar ao canal. Verifique sua internet.');
+                        hls.startLoad();
+                        break;
+                    case Hls.ErrorTypes.MEDIA_ERROR:
+                        showNotification('error', 'Erro de mídia', 'O canal está com problemas. Tente novamente mais tarde.');
+                        hls.recoverMediaError();
+                        break;
+                    default:
+                        showNotification('error', 'Canal indisponível', 'Este canal está temporariamente fora do ar.');
+                        hideLoading();
+                        hls.destroy();
+                        break;
+                }
+            }
+        });
+
+        // Eventos de carregamento do HLS
+        hls.on(Hls.Events.MANIFEST_LOADING, () => {
+            showNotification('info', 'Carregando canal', 'Por favor, aguarde...', 2000);
+        });
+
+        hls.on(Hls.Events.LEVEL_LOADED, () => {
+            showNotification('success', 'Canal carregado', 'Boa diversão!', 3000);
+        });
+    }
+
+    // Eventos do player
+    videoPlayer.addEventListener('playing', () => {
+        if (currentChannel) {
+            showNotification('success', 'Canal no ar', `${currentChannel.name} está sendo reproduzido`, 3000);
+        }
+    });
+
+    videoPlayer.addEventListener('error', () => {
+        showNotification('error', 'Erro no canal', 'Não foi possível reproduzir este canal. Tente outro.');
+    });
+
+    videoPlayer.addEventListener('stalled', () => {
+        showNotification('warning', 'Problemas de conexão', 'A reprodução está instável. Verificando conexão...', 3000);
+    });
+
+    videoPlayer.addEventListener('waiting', () => {
+        showNotification('info', 'Carregando', 'Aguarde, recuperando transmissão...', 2000);
+    });
+}
+
+export function playChannel(channel) {
+    if (!channel || !channel.url) {
+        showNotification('error', 'Canal inválido', 'Não foi possível carregar este canal.');
+        return;
+    }
+
+    const videoPlayer = document.getElementById('videoPlayer');
+    
+    // Atualiza status do canal
+    currentChannel = channel;
+    showNotification('info', 'Iniciando canal', `Carregando ${channel.name}...`, 2000);
+
+    try {
+        if (Hls.isSupported()) {
+            hls.loadSource(channel.url);
+            
+            // Define timeout para erro de carregamento
+            const loadTimeout = setTimeout(() => {
+                showNotification('error', 'Tempo excedido', 'O canal demorou muito para responder. Tente novamente.');
+                hideLoading();
+            }, 15000);
+
+            hls.once(Hls.Events.MANIFEST_PARSED, () => {
+                clearTimeout(loadTimeout);
+                videoPlayer.play()
+                    .catch(error => {
+                        console.error('Erro ao iniciar reprodução:', error);
+                        showNotification('error', 'Erro de reprodução', 'Não foi possível iniciar o canal.');
+                    });
+            });
+        } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+            videoPlayer.src = channel.url;
+            videoPlayer.play()
+                .catch(error => {
+                    console.error('Erro ao iniciar reprodução:', error);
+                    showNotification('error', 'Erro de reprodução', 'Não foi possível iniciar o canal.');
+                });
+        }
+    } catch (error) {
+        console.error('Erro ao carregar canal:', error);
+        showNotification('error', 'Erro inesperado', 'Ocorreu um erro ao carregar o canal.');
+    }
+}
+
+function showNotification(type, title, message, duration = 5000) {
+    const backgroundColor = {
+        error: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+        success: 'linear-gradient(to right, #00b09b, #96c93d)',
+        warning: 'linear-gradient(to right, #f6d365, #fda085)',
+        info: 'linear-gradient(to right, #2193b0, #6dd5ed)'
+    };
+
+    const icon = {
+        error: '❌',
+        success: '✅',
+        warning: '⚠️',
+        info: 'ℹ️'
+    };
+
+    Toastify({
+        text: `${icon[type]} ${title}\n${message}`,
+        duration: duration,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: backgroundColor[type],
+            borderRadius: '8px',
+            padding: '12px 20px',
+            boxShadow: '0 3px 10px rgba(0,0,0,0.2)',
+            fontSize: '14px',
+            maxWidth: '320px'
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
+}
+
+function hideLoading() {
+    const loadingOverlay = document.getElementById('playerLoadingOverlay');
+    if (loadingOverlay) {
+        loadingOverlay.classList.remove('active');
+    }
+}
+
+export function getCurrentChannel() {
+    return currentChannel;
+}
