@@ -1,33 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://seudominio.com/</loc>
-        <lastmod>2024-12-11</lastmod>
+        <loc>https://tvnawebgratis.com/</loc>
+        <lastmod>2024-12-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://tvnawebgratis.com/images/LogoConvert.png</image:loc>
+            <image:title>TV na Web Grátis - Logo Oficial</image:title>
+            <image:caption>Assista TV online grátis com o melhor player IPTV do Brasil</image:caption>
+        </image:image>
     </url>
     <url>
-        <loc>https://seudominio.com/sobre</loc>
-        <lastmod>2024-12-11</lastmod>
+        <loc>https://tvnawebgratis.com/sobre</loc>
+        <lastmod>2024-12-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://seudominio.com/tutorial</loc>
-        <lastmod>2024-12-11</lastmod>
+        <loc>https://tvnawebgratis.com/tutorial</loc>
+        <lastmod>2024-12-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://seudominio.com/termos</loc>
-        <lastmod>2024-12-11</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
+        <loc>https://tvnawebgratis.com/termos</loc>
+        <lastmod>2024-12-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://seudominio.com/privacidade</loc>
-        <lastmod>2024-12-11</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
+        <loc>https://tvnawebgratis.com/privacidade</loc>
+        <lastmod>2024-12-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 </urlset>

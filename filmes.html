@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes - TV na Web Grátis</title>
+    <meta name="description" content="Assista filmes online grátis com o melhor player do Brasil. Streaming em HD, sem downloads.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/LogoConvert.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/LogoConvert.png" sizes="16x16">
+    <link rel="apple-touch-icon" href="images/LogoConvert.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./src/css/main.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-left">
+            <img src="./images/LogoConvert.png" alt="TV na Web Grátis" class="logo">
+            <h1>TV na Web Grátis</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-tv"></i>
+                TV ao Vivo
+            </a>
+            <a href="filmes.html" class="nav-link active">
+                <i class="fas fa-film"></i>
+                Filmes
+            </a>
+            <a href="series.html" class="nav-link">
+                <i class="fas fa-video"></i>
+                Séries
+            </a>
+            <a href="favoritos.html" class="nav-link">
+                <i class="fas fa-heart"></i>
+                Favoritos
+            </a>
+        </nav>
+        <div class="header-right">
+            <button id="toggleTheme" class="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <section class="movies-section">
+            <div class="movies-header">
+                <h2>FILMES DISPONÍVEIS</h2>
+                <div class="movies-controls">
+                    <input type="text" id="searchMovie" class="search-input" placeholder="Buscar filmes...">
+                </div>
+            </div>
+            <div id="moviesList" class="movies-grid">
+                <!-- Os filmes serão carregados aqui via JavaScript -->
+                <div class="coming-soon">
+                    <i class="fas fa-film"></i>
+                    <h3>Em breve!</h3>
+                    <p>Estamos trabalhando para trazer os melhores filmes para você.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="src/js/main.js" type="module"></script>
+</body>
+</html>

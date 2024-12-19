@@ -1,0 +1,529 @@
+{
+  "savedChannels": [
+    {
+      "name": "GLOBO SP",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Abertos"
+    },
+    {
+      "name": "GLOBO RJ",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Abertos"
+    },
+    {
+      "name": "SBT",
+      "url": "https://cdn.jmvstream.com/w/LVW-10801/LVW10801_Xvg4R0u57n/playlist.m3u8",
+      "category": "Abertos"
+    },
+    {
+      "name": "BAND",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Abertos"
+    },
+    {
+      "name": "RECORD",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Abertos"
+    },
+    {
+      "name": "REDE TV",
+      "url": "https://5b7f3c45ab7c2.streamlock.net/arapuan/ngrp:arapuan_all/playlist.m3u8",
+      "category": "Abertos"
+    },
+    {
+      "name": "TV CULTURA",
+      "url": "https://5b33b873179a2.streamlock.net:1443/live/livestream/playlist.m3u8",
+      "category": "Abertos"
+    },
+    {
+      "name": "REDE BRASIL",
+      "url": "https://5cf4a2c2512a2.streamlock.net/rbtv/rbtv/playlist.m3u8",
+      "category": "Abertos"
+    },
+    {
+      "name": "TV GAZETA",
+      "url": "https://video02.logicahost.com.br/tvc21/tvc21/playlist.m3u8",
+      "category": "Abertos"
+    },
+    {
+      "name": "SPORTV",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "SPORTV 2",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "SPORTV 3",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "ESPN",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "ESPN 2",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "ESPN 3",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "ESPN 4",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "FOX SPORTS 2",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE CLUBES",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE 2",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE 3",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE 4",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE 5",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE 6",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE 7",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "PREMIERE 8",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "TNT SPORTS",
+      "url": "https://glxlmn026c.singularcdn.net.br/playout_01/playlist.m3u8",
+      "category": "Esportes"
+    },
+    {
+      "name": "TNT SPORTS 1",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "TNT SPORTS 2",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "TNT SPORTS 3",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "TNT SPORTS 4",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "TNT SPORTS 5",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "ALL SPORTS",
+      "url": "https://5cf4a2c2512a2.streamlock.net/dgrau/dgrau/playlist.m3u8",
+      "category": "Esportes"
+    },
+    {
+      "name": "COMBATE",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "BAND SPORTS",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Esportes"
+    },
+    {
+      "name": "HBO",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "HBO 2",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "HBO PLUS",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "HBO FAMILY",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "HBO XTREME",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "HBO MUNDI",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "HBO POP",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TELECINE PREMIUM",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TELECINE ACTION",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TELECINE TOUCH",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TELECINE FUN",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TELECINE PIPOCA",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TELECINE CULT",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TNT",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "TNT SERIES",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "SPACE",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "CINEMAX",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "AXN",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "MEGAPIX",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "PARAMOUNT",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "SONY",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "UNIVERSAL",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "WARNER",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "STUDIO UNIVERSAL",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "SYFY",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "FX",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Filmes"
+    },
+    {
+      "name": "CARTOON NETWORK",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "DISCOVERY KIDS",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "DISNEY CHANNEL",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "NICK",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "NICK JR",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "GLOOB",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "GLOOBINHO",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "BOOMERANG",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "TOONCAST",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "BABY TV",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Infantil"
+    },
+    {
+      "name": "DISCOVERY CHANNEL",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "DISCOVERY TURBO",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "DISCOVERY SCIENCE",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "DISCOVERY THEATER",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "DISCOVERY WORLD",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "DISCOVERY H&H",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "ANIMAL PLANET",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "NAT GEO",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "HISTORY",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "HISTORY 2",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Documentários"
+    },
+    {
+      "name": "FOOD NETWORK",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "TLC",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "VIVA",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "GNT",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "MULTISHOW",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "OFF",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "BIS",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "MAIS GLOBOSAT",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "E!",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "LIFETIME",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "MTV",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "COMEDY CENTRAL",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "ARTE 1",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "CURTA!",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Variedades"
+    },
+    {
+      "name": "TV MAX",
+      "url": "https://59f1cbe63db89.streamlock.net:1443/tvmax/_definst_/tvmax/playlist.m3u8",
+      "category": "Variedades"
+    },
+    {
+      "name": "TV DIÁRIO",
+      "url": "https://stream-02.nyc.dailymotion.com/sec(IbeXB-fEZXft8Mu82uFOZVTOtAqhQH1-t-_kmoCXVKc)/dm/3/x7txn7q/s/live-2.m3u8",
+      "category": "Variedades"
+    },
+    {
+      "name": "REDE PREMIUM",
+      "url": "https://5c483b9d1019c.streamlock.net/8066/8066/playlist.m3u8",
+      "category": "Variedades"
+    },
+    {
+      "name": "TV UNIÃO",
+      "url": "https://596639ebdd89b.streamlock.net/tvuniao/tvuniao/playlist.m3u8",
+      "category": "Variedades"
+    },
+    {
+      "name": "REDE GOSPEL",
+      "url": "https://cdn.jmvstream.com/w/LVW-8719/LVW8719_AcLVAxWy5J/playlist.m3u8",
+      "category": "Variedades"
+    },
+    {
+      "name": "TV EVANGELIZAR",
+      "url": "https://5f593df7851db.streamlock.net/evangelizar/tv/playlist.m3u8",
+      "category": "Variedades"
+    },
+    {
+      "name": "TV APARECIDA",
+      "url": "https://cdn.jmvstream.com/w/LVW-9716/LVW9716_HbtQtezcaw/playlist.m3u8",
+      "category": "Variedades"
+    },
+    {
+      "name": "GLOBO NEWS",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Notícias"
+    },
+    {
+      "name": "BAND NEWS",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Notícias"
+    },
+    {
+      "name": "RECORD NEWS",
+      "url": "https://5cf4a2c2512a2.streamlock.net/8016/8016/playlist.m3u8",
+      "category": "Notícias"
+    },
+    {
+      "name": "CNN BRASIL",
+      "url": "http://209.222.97.92:16436/",
+      "category": "Notícias"
+    }
+  ]
+}

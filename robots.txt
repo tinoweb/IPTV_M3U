@@ -4,5 +4,9 @@ Allow: /sobre
 Allow: /tutorial
 Allow: /termos
 Allow: /privacidade
+Disallow: /channels.json
+Disallow: /channels.db
 
-Sitemap: https://seudominio.com/sitemap.xml
+# Crawl-delay: 10
+Host: https://tvnawebgratis.com
+Sitemap: https://tvnawebgratis.com/sitemap.xml

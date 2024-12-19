@@ -1,263 +1,233 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <!-- SEO Meta Tags -->
-    <title>TinoWebTV Online - Assista Canais de TV ao Vivo Grátis | Stream Player</title>
-    <meta name="description" content="Assista TV online grátis com nosso player IPTV. Streaming de canais ao vivo, fácil de usar, sem downloads. TV digital em HD direto no seu navegador.">
-    <meta name="keywords" content="iptv player, tv online, canais ao vivo, streaming tv, player m3u, lista iptv, tv grátis, assistir tv online, canais de tv, iptv brasil">
+    <title>TV na Web Grátis - O Melhor Player IPTV Online do Brasil | Assista TV ao Vivo</title>
+    <meta name="description" content="Assista TV online grátis com o melhor player IPTV do Brasil. Streaming de canais ao vivo em HD, sem downloads, direto no navegador. Acesse agora!">
+    <meta name="keywords" content="tv na web grátis, iptv player, tv online, canais ao vivo, streaming tv, player m3u, lista iptv, tv grátis, assistir tv online, canais de tv, iptv brasil">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://seudominio.com/">
-    <meta property="og:title" content="TinoWebTV Online - TV ao Vivo Grátis">
-    <meta property="og:description" content="Assista TV online grátis com nosso player IPTV. Streaming de canais ao vivo em HD direto no seu navegador.">
-    <meta property="og:image" content="https://seudominio.com/images/og-image.jpg">
+    <meta property="og:url" content="https://tvnawebgratis.com/">
+    <meta property="og:title" content="TV na Web Grátis - O Melhor Player IPTV Online do Brasil">
+    <meta property="og:description" content="Assista TV online grátis com o melhor player IPTV do Brasil. Streaming de canais ao vivo em HD direto no seu navegador.">
+    <meta property="og:image" content="images/LogoConvert.png">
+    <meta property="og:image:alt" content="TV na Web Grátis - Logo">
+    <meta property="og:site_name" content="TV na Web Grátis">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://seudominio.com/">
-    <meta property="twitter:title" content="TinoWebTV Online - TV ao Vivo Grátis">
-    <meta property="twitter:description" content="Assista TV online grátis com nosso player IPTV. Streaming de canais ao vivo em HD direto no seu navegador.">
-    <meta property="twitter:image" content="https://seudominio.com/images/og-image.jpg">
+    <meta property="twitter:url" content="https://tvnawebgratis.com/">
+    <meta property="twitter:title" content="TV na Web Grátis - O Melhor Player IPTV Online do Brasil">
+    <meta property="twitter:description" content="Assista TV online grátis com o melhor player IPTV do Brasil. Streaming de canais ao vivo em HD direto no seu navegador.">
+    <meta property="twitter:image" content="images/LogoConvert.png">
+    
+    <!-- Outras Meta Tags importantes -->
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="TV na Web Grátis">
+    <meta name="language" content="pt-BR">
+    <meta name="revisit-after" content="1 day">
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="msapplication-TileColor" content="#1a73e8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="https://tvnawebgratis.com/">
+    
+    <!-- Preconnect to important domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <!-- Schema.org markup para Rich Snippets -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "name": "TV na Web Grátis",
+        "url": "https://tvnawebgratis.com",
+        "description": "Player IPTV online gratuito com os melhores canais de TV ao vivo do Brasil.",
+        "applicationCategory": "Entertainment",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "TV na Web Grátis",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://tvnawebgratis.com/images/LogoConvert.png"
+            }
+        },
+        "screenshot": {
+            "@type": "ImageObject",
+            "url": "https://tvnawebgratis.com/images/LogoConvert.png",
+            "caption": "Interface do Player IPTV"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1250"
+        }
+    }
+    </script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-    <!-- Canonical URL -->
-    <meta rel="canonical" href="https://seudominio.com/">
+    <link rel="icon" type="image/png" href="images/LogoConvert.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/LogoConvert.png" sizes="16x16">
+    <link rel="apple-touch-icon" href="images/LogoConvert.png">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./src/css/main.css">
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "TinoWebTV Online",
-      "description": "Player de IPTV online para assistir canais de TV ao vivo gratuitamente",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "BRL"
-      }
-    }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="src/js/utils/db.js" type="module"></script>
+    <script src="src/js/app/channels.js" type="module"></script>
+    <script src="src/js/app/player.js" type="module"></script>
+    <script src="src/js/main.js" type="module"></script>
 </head>
 <body>
-    <!-- Header com H1 otimizado para SEO -->
     <header class="app-header">
         <div class="header-left">
-            <div class="logo-container">
-                <img src="logo.jpg" alt="TinoWebTV Logo">
-            </div>
-            <h1>TinoWebTV Online</h1>
+            <img src="./images/LogoConvert.png" alt="TV na Web Grátis" class="logo">
+            <h1>TV na Web Grátis</h1>
         </div>
-        <div class="header-right">
-            <a href="checker.html" class="btn-link">
-                <i class="fas fa-link"></i> Verificador de Links
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link active">
+                <i class="fas fa-tv"></i>
+                TV ao Vivo
             </a>
-            <div class="theme-switch">
-                <input type="checkbox" id="themeSwitch" aria-label="Alternar tema claro/escuro">
-                <label for="themeSwitch">
-                    <i class="fas fa-sun"></i>
-                    <i class="fas fa-moon"></i>
-                </label>
-            </div>
+            <a href="filmes.html" class="nav-link">
+                <i class="fas fa-film"></i>
+                Filmes
+            </a>
+            <a href="series.html" class="nav-link">
+                <i class="fas fa-video"></i>
+                Séries
+            </a>
+            <a href="favoritos.html" class="nav-link">
+                <i class="fas fa-heart"></i>
+                Favoritos
+            </a>
+        </nav>
+        <div class="header-right">
+            <button id="donateButton" class="donate-button" aria-label="Fazer uma doação">
+                <i class="fas fa-heart"></i>
+                Apoiar
+            </button>
+            <button id="toggleTheme" class="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-sun"></i>
+            </button>
+            <button id="showShortcuts" class="shortcuts-btn" aria-label="Mostrar atalhos">
+                <i class="fas fa-keyboard"></i>
+            </button>
         </div>
     </header>
 
-    <div class="main-layout">
-        <!-- Sidebar com lista de canais -->
-        <aside class="sidebar" role="complementary">
-            <div class="sidebar-section">
-                <h2><i class="fas fa-tv"></i> Canais Disponíveis</h2>
-                <div class="search-container">
-                    <div class="search-input-wrapper">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="channelSearch" placeholder="Buscar canais..." aria-label="Buscar canais">
-                        <button id="clearSearch" class="clear-search" aria-label="Limpar busca">
-                            <i class="fas fa-times"></i>
-                        </button>
+    <!-- Modal de Doação -->
+    <div id="donationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-heart"></i> Apoie o TV na Web Grátis</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="donation-message">
+                    <i class="fas fa-heart donation-icon"></i>
+                    <p>Sua contribuição é fundamental para mantermos o TV na Web Grátis funcionando!</p>
+                    <p>Com sua ajuda podemos:</p>
+                    <ul>
+                        <li><i class="fas fa-server"></i> Manter nossos servidores ativos 24/7</li>
+                        <li><i class="fas fa-tachometer-alt"></i> Garantir streaming em alta velocidade</li>
+                        <li><i class="fas fa-plus-circle"></i> Adicionar mais conteúdo regularmente</li>
+                        <li><i class="fas fa-code"></i> Desenvolver novas funcionalidades</li>
+                    </ul>
+                </div>
+                
+                <div class="donation-options">
+                    <h3>Escolha um valor para doar</h3>
+                    <div class="donation-buttons">
+                        <button class="donation-value" data-value="10">R$ 10</button>
+                        <button class="donation-value" data-value="20">R$ 20</button>
+                        <button class="donation-value" data-value="50">R$ 50</button>
                     </div>
                 </div>
-                <div id="saved-channels" class="channels-list" role="list">
-                    <!-- Os canais serão inseridos aqui dinamicamente -->
-                </div>
-            </div>
-        </aside>
 
-        <!-- Área principal com player -->
-        <main class="player-area" role="main">
-            <div class="player-container">
-                <video id="videoPlayer" controls aria-label="Player de vídeo"></video>
-                <div class="player-overlay">
-                    <div class="stream-info">
-                        <div id="current-info"></div>
-                        <div class="quality-info">
-                            <span id="currentQuality"></span>
-                            <span id="streamStats"></span>
+                <div class="pix-info" style="display: none;">
+                    <h3>Faça sua doação via PIX</h3>
+                    <div class="pix-qr">
+                        <img src="images/qr-pix.png" alt="QR Code PIX" id="pixQR">
+                    </div>
+                    <div class="pix-key">
+                        <p>Chave PIX (clique para copiar):</p>
+                        <div class="copy-key">
+                            <input type="text" id="pixKey" readonly>
+                            <button id="copyPixKey" class="copy-button" title="Copiar chave PIX">
+                                <i class="fas fa-copy"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Seção de entrada de URL -->
-            <section class="input-section">
-                <div class="url-input-group">
-                    <input type="text" id="stream-url" 
-                           placeholder="URL do Stream" 
-                           aria-label="URL do stream">
-                    <button id="check-stream" class="btn-primary">
-                        <i class="fas fa-play"></i> Reproduzir
-                    </button>
-                </div>
-                <div class="playlist-input-group">
-                    <input type="text" id="m3uInput" 
-                           placeholder="URL da Playlist M3U" 
-                           aria-label="URL da playlist M3U">
-                    <button id="loadBtn" class="btn-primary">
-                        <i class="fas fa-download"></i> Carregar Playlist
-                    </button>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- Modal para Timer -->
-    <div id="timerModal" class="modal">
-        <div class="modal-content">
-            <h2>Timer para Desligar</h2>
-            <div class="timer-options">
-                <button data-time="30">30 min</button>
-                <button data-time="60">1 hora</button>
-                <button data-time="120">2 horas</button>
-                <button data-time="custom">Personalizado</button>
-            </div>
-            <input type="number" id="customTime" placeholder="Minutos" min="1" style="display: none;">
-            <div class="modal-buttons">
-                <button id="startTimer">Iniciar</button>
-                <button id="cancelTimer">Cancelar</button>
-                <button id="clearTimer" style="display: none;">Limpar Timer</button>
-            </div>
-            <div id="timerDisplay" style="display: none;"></div>
         </div>
     </div>
 
-    <!-- Modal para adicionar playlist -->
-    <div id="addPlaylistModal" class="modal">
-        <div class="modal-content">
-            <h2>Adicionar Nova Playlist</h2>
-            <input type="text" id="newPlaylistName" placeholder="Nome da Playlist">
-            <input type="text" id="newPlaylistUrl" placeholder="URL da Playlist">
-            <div class="modal-buttons">
-                <button id="confirmAddPlaylist" class="btn-primary">Adicionar</button>
-                <button id="cancelAddPlaylist" class="btn-secondary">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de atalhos do teclado -->
-    <div id="shortcutsModal" class="modal">
-        <div class="modal-content">
-            <h2>Atalhos do Teclado</h2>
-            <div class="shortcuts-list">
-                <div class="shortcut-item">
-                    <span class="key">Espaço</span>
-                    <span class="description">Play/Pause</span>
-                </div>
-                <div class="shortcut-item">
-                    <span class="key">←</span>
-                    <span class="description">Canal Anterior</span>
-                </div>
-                <div class="shortcut-item">
-                    <span class="key">→</span>
-                    <span class="description">Próximo Canal</span>
-                </div>
-                <div class="shortcut-item">
-                    <span class="key">↑</span>
-                    <span class="description">Aumentar Volume</span>
-                </div>
-                <div class="shortcut-item">
-                    <span class="key">↓</span>
-                    <span class="description">Diminuir Volume</span>
-                </div>
-                <div class="shortcut-item">
-                    <span class="key">M</span>
-                    <span class="description">Mutar/Desmutar</span>
-                </div>
-                <div class="shortcut-item">
-                    <span class="key">F</span>
-                    <span class="description">Tela Cheia</span>
+    <main class="app-container">
+        <section class="channels-section">
+            <div class="channels-header">
+                <h2>CANAIS DISPONÍVEIS</h2>
+                <div class="channels-controls">
+                    <input type="text" id="searchChannel" class="search-input" placeholder="Buscar canais...">
                 </div>
             </div>
-            <button id="closeShortcuts" class="btn-secondary">Fechar</button>
-        </div>
-    </div>
+            <div id="channelsList" class="channels-list"></div>
+        </section>
 
-    <!-- Modal para importar playlists -->
-    <div id="importModal" class="modal">
-        <div class="modal-content">
-            <h2>Importar Playlists</h2>
-            <p>Cole aqui o código de exportação das playlists:</p>
-            <textarea id="importText" rows="6"></textarea>
-            <div class="modal-buttons">
-                <button id="confirmImport" class="btn-primary">Importar</button>
-                <button id="cancelImport" class="btn-secondary">Cancelar</button>
+        <section class="player-section">
+            <div class="video-container">
+                <video id="videoPlayer" controls playsinline>
+                    Seu navegador não suporta a reprodução de vídeos.
+                </video>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <!-- Botão flutuante para mobile -->
-    <button id="mobileChannelsBtn" 
-            class="mobile-channels-btn" 
-            aria-label="Abrir lista de canais">
+    <button id="toggleChannels" class="toggle-channels" aria-label="Alternar lista de canais">
         <i class="fas fa-list"></i>
     </button>
 
-    <!-- Modal mobile com semântica adequada -->
-    <div id="mobileChannelsModal" 
-         class="mobile-channels-modal" 
-         role="dialog" 
-         aria-labelledby="modalTitle">
-        <div class="mobile-channels-content">
-            <div class="mobile-channels-header">
-                <h2 id="modalTitle">Canais Salvos</h2>
-                <button class="close-modal-btn" aria-label="Fechar modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="mobile-channels-list" class="mobile-channels-list" role="list"></div>
+    <div id="channelsOverlay" class="channels-overlay"></div>
+
+    <div id="shortcutsModal" class="modal">
+        <div class="modal-content">
+            <h2>Atalhos do Teclado</h2>
+            <ul>
+                <li><kbd>Espaço</kbd> - Play/Pause</li>
+                <li><kbd>F</kbd> - Tela cheia</li>
+                <li><kbd>M</kbd> - Mutar/Desmutar</li>
+                <li><kbd>↑</kbd> - Aumentar volume</li>
+                <li><kbd>↓</kbd> - Diminuir volume</li>
+            </ul>
         </div>
     </div>
 
-    <!-- Footer com links relevantes -->
-    <footer class="app-footer">
-        <nav class="footer-nav">
-            <h3>Links Úteis</h3>
-            <ul>
-                <li><a href="/sobre">Sobre o Player</a></li>
-                <li><a href="/tutorial">Como Usar</a></li>
-                <li><a href="/termos">Termos de Uso</a></li>
-                <li><a href="/privacidade">Política de Privacidade</a></li>
-            </ul>
-        </nav>
-        <p> 2024 TinoWebTV Online - Todos os direitos reservados</p>
-    </footer>
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
 
-    <!-- Script principal -->
-    <script src="app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos - TV na Web Grátis</title>
+    <meta name="description" content="Acesse seus canais, filmes e séries favoritos em um só lugar. TV na Web Grátis - o melhor streaming do Brasil.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/LogoConvert.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/LogoConvert.png" sizes="16x16">
+    <link rel="apple-touch-icon" href="images/LogoConvert.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./src/css/main.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-left">
+            <img src="./images/LogoConvert.png" alt="TV na Web Grátis" class="logo">
+            <h1>TV na Web Grátis</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-tv"></i>
+                TV ao Vivo
+            </a>
+            <a href="filmes.html" class="nav-link">
+                <i class="fas fa-film"></i>
+                Filmes
+            </a>
+            <a href="series.html" class="nav-link">
+                <i class="fas fa-video"></i>
+                Séries
+            </a>
+            <a href="favoritos.html" class="nav-link active">
+                <i class="fas fa-heart"></i>
+                Favoritos
+            </a>
+        </nav>
+        <div class="header-right">
+            <button id="toggleTheme" class="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <section class="favorites-section">
+            <div class="favorites-header">
+                <h2>SEUS FAVORITOS</h2>
+                <div class="favorites-controls">
+                    <input type="text" id="searchFavorites" class="search-input" placeholder="Buscar favoritos...">
+                </div>
+            </div>
+            <div id="favoritesList" class="favorites-grid">
+                <!-- Os favoritos serão carregados aqui via JavaScript -->
+                <div class="no-favorites">
+                    <i class="fas fa-heart"></i>
+                    <h3>Nenhum favorito ainda</h3>
+                    <p>Adicione seus canais, filmes e séries favoritos para acessá-los facilmente aqui.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="src/js/main.js" type="module"></script>
+</body>
+</html>

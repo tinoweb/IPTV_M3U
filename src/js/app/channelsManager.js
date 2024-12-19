@@ -61,7 +61,6 @@ class ChannelsManager {
         return false;
     }
 
-    // Migrar dados do localStorage para o arquivo JSON
     async migrateFromLocalStorage(localStorage) {
         try {
             const channels = JSON.parse(localStorage.getItem('savedChannels') || '[]');

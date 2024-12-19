@@ -1,0 +1,190 @@
+/* Desktop Layout (> 768px) */
+@media (min-width: 769px) {
+    /* Layout principal */
+    .app-container {
+        display: flex;
+        height: calc(100vh - var(--header-height));
+        background: var(--background-dark);
+    }
+
+    /* Seção de canais */
+    .channels-section {
+        width: var(--sidebar-width);
+        background: var(--background-dark);
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .channels-header {
+        padding: var(--spacing-md);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .channels-header h2 {
+        color: var(--text-light);
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .channels-controls {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .search-input,
+    .category-select {
+        padding: var(--spacing-sm);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background: var(--background-light);
+        color: var(--text-primary);
+    }
+
+    .channels-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: var(--spacing-sm);
+    }
+
+    .channel-item {
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+        color: var(--text-light);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .channel-item:hover {
+        background: var(--hover-color);
+    }
+
+    .channel-item.active {
+        background: var(--primary-color);
+    }
+
+    .channel-name {
+        font-weight: 500;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .channel-category {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+    }
+
+    /* Seção do player */
+    .player-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing-md);
+        background: var(--background-dark);
+    }
+
+    .video-container {
+        flex: 1;
+        position: relative;
+        background: black;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        margin-bottom: var(--spacing-md);
+    }
+
+    #videoPlayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .player-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .stream-input,
+    .playlist-input {
+        width: 100%;
+        padding: var(--spacing-sm);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background: var(--background-light);
+        color: var(--text-primary);
+    }
+
+    .control-buttons {
+        grid-column: 1 / -1;
+        display: flex;
+        gap: var(--spacing-md);
+    }
+
+    .control-btn {
+        flex: 1;
+        padding: var(--spacing-sm) var(--spacing-md);
+        background: var(--primary-color);
+        color: var(--text-light);
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+
+    .control-btn:hover {
+        background: var(--secondary-color);
+    }
+
+    /* Botão assistir */
+    .btn-watch {
+        background: var(--accent-color);
+        color: var(--text-light);
+        border: none;
+        border-radius: var(--border-radius);
+        padding: var(--spacing-sm) var(--spacing-md);
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+
+    .btn-watch:hover {
+        background: var(--secondary-color);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .app-container {
+            flex-direction: column;
+        }
+
+        .channels-section {
+            width: 100%;
+            height: auto;
+            border-right: none;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .player-section {
+            height: 0;
+            flex: 1;
+        }
+
+        .player-controls {
+            grid-template-columns: 1fr;
+        }
+    }
+}

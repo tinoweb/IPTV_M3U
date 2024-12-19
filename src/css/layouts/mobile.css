@@ -1,0 +1,136 @@
+/* Mobile Layout (< 768px) */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+        height: calc(100vh - var(--header-height));
+    }
+
+    .video-container {
+        margin: 0 calc(-1 * var(--spacing-sm));
+    }
+
+    .player-controls {
+        gap: var(--spacing-md);
+    }
+
+    .control-buttons {
+        flex-direction: column;
+    }
+
+    .channels-section {
+        position: fixed;
+        left: 0;
+        top: var(--header-height);
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - var(--header-height));
+        background: var(--background-dark);
+        transform: translateX(-100%);
+        transition: transform var(--transition-speed);
+        z-index: var(--z-sidebar);
+        border-right: 1px solid var(--border-color);
+    }
+
+    .channels-section.active {
+        transform: translateX(0);
+    }
+
+    .channels-header {
+        padding: var(--spacing-sm);
+    }
+
+    .channels-controls {
+        flex-direction: column;
+    }
+
+    .search-input,
+    .category-select {
+        width: 100%;
+    }
+
+    /* Botão para abrir/fechar a lista de canais */
+    .toggle-channels {
+        position: fixed;
+        left: var(--spacing-md);
+        bottom: var(--spacing-md);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: var(--text-light);
+        border: none;
+        cursor: pointer;
+        z-index: var(--z-floating);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .toggle-channels:hover {
+        background: var(--secondary-color);
+    }
+
+    /* Overlay para quando a lista de canais estiver aberta */
+    .channels-overlay {
+        display: none;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: calc(var(--z-sidebar) - 1);
+    }
+
+    .channels-overlay.active {
+        display: block;
+    }
+
+    .player-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing-md);
+    }
+
+    .video-container {
+        flex: 1;
+        position: relative;
+        background: black;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .player-controls {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .control-buttons {
+        display: flex;
+        gap: var(--spacing-md);
+    }
+}
+
+/* Small Mobile (≤ 480px) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 85%;
+    }
+
+    .header-logo {
+        width: 28px;
+        height: 28px;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .video-player {
+        height: calc(100vh - var(--header-height) - 200px);
+    }
+}

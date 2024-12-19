@@ -1,0 +1,75 @@
+/* Header Styles */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    height: var(--header-height);
+    position: relative;
+    z-index: var(--z-header);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Corrigindo a classe do logo */
+.header-left .logo {
+    height: 18px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-left h1 {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.header-right {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color var(--transition-speed);
+}
+
+.btn-link:hover {
+    background-color: var(--hover-color);
+}
+
+.btn-icon {
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color var(--transition-speed);
+}
+
+.btn-icon:hover {
+    background-color: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+    .app-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .header-left h1 {
+        font-size: 1.2rem;
+    }
+
+    .header-left .logo {
+        height: 30px;
+    }
+}

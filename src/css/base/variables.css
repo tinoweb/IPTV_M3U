@@ -1,0 +1,52 @@
+:root {
+    /* Cores */
+    --primary-color: #2196f3;
+    --secondary-color: #1976d2;
+    --accent-color: #f44336;
+    --background-dark: #1e1e1e;
+    --background-light: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-light: #ffffff;
+    --border-color: #404040;
+    --hover-color: #3d3d3d;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+
+    /* Dimensões */
+    --header-height: 60px;
+    --sidebar-width: 300px;
+    --border-radius: 8px;
+
+    /* Espaçamento */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Tipografia */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+
+    /* Z-index */
+    --z-header: 100;
+    --z-sidebar: 90;
+    --z-modal: 110;
+    --z-floating: 95;
+
+    /* Animações */
+    --transition-speed: 0.3s;
+}
+
+/* Tema escuro */
+[data-theme="dark"] {
+    --background-light: #121212;
+    --background-dark: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #333333;
+    --hover-color: rgba(255, 255, 255, 0.1);
+}
