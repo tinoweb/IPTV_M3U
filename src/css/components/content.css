@@ -131,3 +131,127 @@
         font-size: 1rem;
     }
 }
+
+/* Custom Content Card Grid Styling */
+.movies-grid,
+.series-grid,
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    padding: 24px;
+}
+
+.content-card {
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-spring);
+    display: flex;
+    flex-direction: column;
+}
+
+.content-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 0, 127, 0.3);
+    box-shadow: 0 12px 30px rgba(255, 0, 127, 0.15);
+}
+
+.card-logo-wrapper {
+    height: 140px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    position: relative;
+}
+
+.card-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.card-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 0, 127, 0.1);
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+}
+
+.card-body {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--spacing-sm);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-category {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.card-play-btn {
+    margin-top: auto;
+    padding: var(--spacing-sm);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    background: var(--primary-gradient);
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.content-card:hover .card-play-btn {
+    background: var(--primary-gradient-hover);
+    box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
+}
+
+.coming-soon {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px var(--spacing-md);
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+}
+
+.coming-soon i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.coming-soon h3 {
+    color: var(--text-primary);
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+}

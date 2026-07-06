@@ -1,193 +1,190 @@
-// Elementos do DOM
-const channelsSection = document.querySelector('.channels-section');
-const channelsList = document.getElementById('channelsList');
-const searchInput = document.getElementById('searchChannel');
-const toggleChannelsBtn = document.getElementById('toggleChannels');
-const channelsOverlay = document.getElementById('channelsOverlay');
-const loadingOverlay = document.getElementById('loadingOverlay');
+import { loadFromLocalStorage, saveToLocalStorage } from '../utils/db.js';
+import { playChannel } from './player.js';
 
-// Estado
 let channels = [];
-let activeChannel = null;
+let activeCategory = 'Todos';
+let searchInput = null;
+let channelsList = null;
+let categoryTabs = null;
 
-// Funções de utilidade
-function showLoading() {
-    if (loadingOverlay) {
-        loadingOverlay.style.display = 'flex';
-    }
-}
+export async function loadLocalChannels() {
+    searchInput = document.getElementById('searchChannel');
+    channelsList = document.getElementById('channelsList');
+    categoryTabs = document.getElementById('categoryTabs');
 
-function hideLoading() {
-    if (loadingOverlay) {
-        loadingOverlay.style.display = 'none';
-    }
-}
-
-function showToast(message, type = 'info') {
-    Toastify({
-        text: message,
-        duration: 3000,
-        gravity: 'top',
-        position: 'right',
-        style: {
-            background: type === 'error' ? '#ff5252' : '#4caf50'
-        },
-        className: `toast-${type}`
-    }).showToast();
-}
-
-// Funções principais
-function toggleChannelsList() {
-    channelsSection?.classList.toggle('active');
-    channelsOverlay?.classList.toggle('active');
-}
-
-function closeChannelsList() {
-    channelsSection?.classList.remove('active');
-    channelsOverlay?.classList.remove('active');
-}
-
-function filterChannels() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-
-    // Normaliza o texto removendo acentos e espaços extras
-    const normalizeText = (text) => {
-        return text.normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/\s+/g, ' ')
-            .trim();
-    };
-
-    const normalizedSearchTerm = normalizeText(searchTerm);
-
-    const filteredChannels = channels.filter(channel => {
-        const normalizedChannelName = normalizeText(channel.name.toLowerCase());
-        return normalizedChannelName.includes(normalizedSearchTerm);
-    });
-
-    console.log(`Filtrado: ${filteredChannels.length} canais para o termo "${searchTerm}"`);
-    renderChannels(filteredChannels);
-
-    // Adiciona feedback quando não há resultados
-    if (filteredChannels.length === 0 && searchTerm !== '') {
-        channelsList.innerHTML = `
-            <div class="no-results">
-                <p>Nenhum canal encontrado para "${searchInput.value}"</p>
-                <small>Tente uma pesquisa diferente</small>
-            </div>
-        `;
-    }
-}
-
-function createChannelElement(channel) {
-    const channelItem = document.createElement('div');
-    channelItem.className = 'channel-item';
-    channelItem.setAttribute('data-channel-id', channel.id);
-    
-    channelItem.innerHTML = `
-        <div class="channel-info">
-            <span class="channel-name">${channel.name}</span>
-            ${channel.quality ? `<span class="quality-tag">${channel.quality}</span>` : ''}
-        </div>
-        <button class="play-button" onclick="window.playChannel(${JSON.stringify(channel)})">
-            <i class="fas fa-play"></i>
-            Assistir
-            <span class="channel-status">
-                <span class="status-dot"></span>
-                Carregando...
-            </span>
-        </button>
-    `;
-    
-    return channelItem;
-}
-
-function renderChannels(channelsToRender) {
     if (!channelsList) {
-        console.error('Lista de canais não encontrada');
+        console.warn('Channels list container not found on this page.');
         return;
     }
 
-    channelsList.innerHTML = '';
-    
-    channelsToRender.forEach(channel => {
-        const channelElement = createChannelElement(channel);
-        
-        channelElement.addEventListener('click', () => {
-            setActiveChannel(channel);
-            if (window.innerWidth <= 768) {
-                closeChannelsList();
-            }
-        });
-        
-        channelsList.appendChild(channelElement);
-    });
-
-    console.log(`Renderizados ${channelsToRender.length} canais`);
-}
-
-function setActiveChannel(channel) {
-    activeChannel = channel;
-    if (window.videoPlayer && window.videoPlayer.hls) {
-        window.videoPlayer.hls.loadSource(channel.url);
-    }
-}
-
-async function loadLocalChannels() {
     try {
-        showLoading();
         const response = await fetch('./public/data/channels.json');
         const data = await response.json();
-        channels = data.savedChannels;
+        channels = data.savedChannels || [];
 
-        // Ordenar canais por nome
+        // Sort channels by name alphabetically
         channels.sort((a, b) => a.name.localeCompare(b.name));
 
-        // Limpar o input de pesquisa
+        // Setup Event Listeners for search
         if (searchInput) {
-            searchInput.value = '';
+            searchInput.addEventListener('input', () => filterChannels());
         }
 
-        // Renderizar todos os canais
-        renderChannels(channels);
-        hideLoading();
+        // Setup Category Tabs
+        initCategoryTabs();
+
+        // Render all channels initially
+        renderChannelsList(channels);
+        
+        console.log(`Loaded ${channels.length} channels successfully.`);
+        return channels;
     } catch (error) {
-        console.error('Erro ao carregar canais:', error);
-        showToast('Erro ao carregar a lista de canais', 'error');
-        hideLoading();
+        console.error('Error loading channels:', error);
+        if (channelsList) {
+            channelsList.innerHTML = `<div class="error-msg">Erro ao carregar lista de canais.</div>`;
+        }
+        return [];
     }
 }
 
-// Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    loadLocalChannels();
+function initCategoryTabs() {
+    if (!categoryTabs) return;
 
-    // Event listeners para pesquisa
-    if (searchInput) {
-        searchInput.addEventListener('input', filterChannels);
+    categoryTabs.querySelectorAll('.category-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            // Remove active class from all tabs
+            categoryTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            const clickedTab = e.currentTarget;
+            clickedTab.classList.add('active');
+            
+            activeCategory = clickedTab.getAttribute('data-category');
+            filterChannels();
+        });
+    });
+}
+
+export function filterChannels() {
+    if (!channelsList) return;
+
+    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    const favorites = loadFromLocalStorage('favorites') || [];
+
+    // Filter by Category first
+    let filtered = channels;
+    if (activeCategory === 'Favoritos') {
+        filtered = channels.filter(ch => favorites.includes(ch.url));
+    } else if (activeCategory !== 'Todos') {
+        filtered = channels.filter(ch => ch.category === activeCategory);
     }
 
-    // Event listeners para toggle de canais
-    if (toggleChannelsBtn) {
-        toggleChannelsBtn.addEventListener('click', toggleChannelsList);
+    // Then filter by search term
+    if (searchTerm) {
+        const normalize = (text) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        const normalizedSearch = normalize(searchTerm);
+        filtered = filtered.filter(ch => normalize(ch.name).includes(normalizedSearch));
     }
-    if (channelsOverlay) {
-        channelsOverlay.addEventListener('click', closeChannelsList);
-    }
-});
 
-// Função global para reproduzir canal
-window.playChannel = function(url) {
-    const channel = channels.find(ch => ch.url === url);
-    if (channel) {
-        setActiveChannel(channel);
-    }
-};
+    renderChannelsList(filtered);
 
-// Exportar funções necessárias
-export {
-    loadLocalChannels,
-    renderChannels,
-    channels,
-    setActiveChannel
-};
+    // If no results, show empty state helper
+    if (filtered.length === 0) {
+        if (activeCategory === 'Favoritos') {
+            channelsList.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-heart" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 10px;"></i>
+                    <p>Sua lista de favoritos está vazia.</p>
+                    <small>Clique no coração dos canais para adicioná-los aqui.</small>
+                </div>
+            `;
+        } else {
+            channelsList.innerHTML = `
+                <div class="no-results">
+                    <p>Nenhum canal encontrado.</p>
+                    <small>Tente alterar sua busca ou categoria.</small>
+                </div>
+            `;
+        }
+    }
+}
+
+function renderChannelsList(channelsToRender) {
+    if (!channelsList) return;
+
+    channelsList.innerHTML = '';
+    const favorites = loadFromLocalStorage('favorites') || [];
+
+    channelsToRender.forEach(channel => {
+        const isFavorited = favorites.includes(channel.url);
+        const channelItem = document.createElement('div');
+        channelItem.className = 'channel-item';
+        channelItem.setAttribute('data-channel-id', channel.id);
+
+        // Generate dynamic fallback letter avatar if no logo
+        const firstLetter = channel.name.charAt(0).toUpperCase();
+        const logoHTML = channel.logo 
+            ? `<img class="channel-logo" src="${channel.logo}" alt="${channel.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+            : '';
+        
+        channelItem.innerHTML = `
+            <div class="channel-logo-container">
+                ${logoHTML}
+                <div class="channel-avatar" style="${channel.logo ? 'display:none;' : ''}">${firstLetter}</div>
+            </div>
+            <div class="channel-info">
+                <span class="channel-name">${channel.name}</span>
+                <span class="channel-category">${channel.category || 'Geral'}</span>
+            </div>
+            <div class="channel-actions">
+                <button class="fav-btn${isFavorited ? ' active' : ''}" title="Adicionar aos favoritos" aria-label="Favorito">
+                    <i class="${isFavorited ? 'fas' : 'far'} fa-heart"></i>
+                </button>
+                <button class="watch-btn" title="Assistir canal" aria-label="Assistir">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        `;
+
+        // Watch button or direct card click triggers playing
+        const watchBtn = channelItem.querySelector('.watch-btn');
+        const playAction = (e) => {
+            // Prevent execution if clicking fav button
+            if (e.target.closest('.fav-btn')) return;
+            playChannel(channel);
+        };
+        channelItem.addEventListener('click', playAction);
+
+        // Fav button click toggles favorite state
+        const favBtn = channelItem.querySelector('.fav-btn');
+        favBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleFavorite(channel, favBtn);
+        });
+
+        channelsList.appendChild(channelItem);
+    });
+}
+
+function toggleFavorite(channel, favBtn) {
+    const favorites = loadFromLocalStorage('favorites') || [];
+    const index = favorites.indexOf(channel.url);
+    const icon = favBtn.querySelector('i');
+
+    if (index === -1) {
+        favorites.push(channel.url);
+        icon.className = 'fas fa-heart';
+        favBtn.classList.add('active');
+        saveToLocalStorage('favorites', favorites);
+    } else {
+        favorites.splice(index, 1);
+        icon.className = 'far fa-heart';
+        favBtn.classList.remove('active');
+        saveToLocalStorage('favorites', favorites);
+        
+        // If we are currently in the favorites tab, re-filter/render immediately to remove the item
+        if (activeCategory === 'Favoritos') {
+            filterChannels();
+        }
+    }
+}

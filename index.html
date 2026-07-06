@@ -88,14 +88,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./src/css/main.css">
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="src/js/utils/db.js" type="module"></script>
-    <script src="src/js/app/channels.js" type="module"></script>
-    <script src="src/js/app/player.js" type="module"></script>
-    <script src="src/js/main.js" type="module"></script>
 </head>
 <body>
     <header class="app-header">
@@ -189,6 +181,19 @@
                 <h2>CANAIS DISPONÍVEIS</h2>
                 <div class="channels-controls">
                     <input type="text" id="searchChannel" class="search-input" placeholder="Buscar canais...">
+                    <div class="category-tabs-container">
+                        <div class="category-tabs" id="categoryTabs">
+                            <button class="category-tab active" data-category="Todos">Todos</button>
+                            <button class="category-tab" data-category="Abertos">Abertos</button>
+                            <button class="category-tab" data-category="Filmes">Filmes</button>
+                            <button class="category-tab" data-category="Séries">Séries</button>
+                            <button class="category-tab" data-category="Esportes">Esportes</button>
+                            <button class="category-tab" data-category="Notícias">Notícias</button>
+                            <button class="category-tab" data-category="Infantil">Infantil</button>
+                            <button class="category-tab" data-category="Variedades">Variedades</button>
+                            <button class="category-tab" data-category="Favoritos"><i class="fas fa-heart"></i> Favoritos</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="channelsList" class="channels-list"></div>

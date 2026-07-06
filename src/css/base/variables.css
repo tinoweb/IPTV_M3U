@@ -1,35 +1,47 @@
 :root {
-    /* Cores */
-    --primary-color: #2196f3;
-    --secondary-color: #1976d2;
-    --accent-color: #f44336;
-    --background-dark: #1e1e1e;
-    --background-light: #2d2d2d;
+    /* Premium Neon-Glass Theme Colors */
+    --primary-color: #ff007f; /* Electric Pink */
+    --primary-hover: #ff3399;
+    --primary-gradient: linear-gradient(135deg, #7928ca 0%, #ff007f 100%);
+    --primary-gradient-hover: linear-gradient(135deg, #8a3fd5 0%, #ff3399 100%);
+    
+    --secondary-color: #00f2fe; /* Neon Cyan */
+    --secondary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    
+    --accent-color: #ff4500;
+    --background-dark: #08080c; /* Deep Space Black */
+    --background-light: #12121c; /* Dark Slate Blue */
+    --background-card: rgba(22, 22, 34, 0.6); /* Glass Card BG */
+    
     --text-primary: #ffffff;
-    --text-secondary: #b3b3b3;
+    --text-secondary: #a0a0b0;
     --text-light: #ffffff;
-    --border-color: #404040;
-    --hover-color: #3d3d3d;
-    --shadow-color: rgba(0, 0, 0, 0.2);
+    --text-muted: #62627a;
+    
+    --border-color: rgba(255, 255, 255, 0.07);
+    --border-focus: rgba(255, 0, 127, 0.5);
+    --hover-color: rgba(255, 255, 255, 0.04);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    
+    /* Layout Dimensions */
+    --header-height: 70px;
+    --sidebar-width: 320px;
+    --border-radius: 16px;
+    --border-radius-sm: 8px;
 
-    /* Dimensões */
-    --header-height: 60px;
-    --sidebar-width: 300px;
-    --border-radius: 8px;
+    /* Spacing */
+    --spacing-xs: 6px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 28px;
+    --spacing-xl: 40px;
 
-    /* Espaçamento */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
-
-    /* Tipografia */
+    /* Typography */
     --font-size-xs: 12px;
     --font-size-sm: 14px;
     --font-size-md: 16px;
-    --font-size-lg: 18px;
-    --font-size-xl: 24px;
+    --font-size-lg: 20px;
+    --font-size-xl: 28px;
 
     /* Z-index */
     --z-header: 100;
@@ -37,16 +49,20 @@
     --z-modal: 110;
     --z-floating: 95;
 
-    /* Animações */
-    --transition-speed: 0.3s;
+    /* Animations */
+    --transition-speed: 0.25s;
+    --transition-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Tema escuro */
-[data-theme="dark"] {
-    --background-light: #121212;
-    --background-dark: #1e1e1e;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --border-color: #333333;
-    --hover-color: rgba(255, 255, 255, 0.1);
+/* Dark theme is the default premium aesthetic, light theme is alternative */
+[data-theme="light"] {
+    --background-dark: #f0f2f5;
+    --background-light: #ffffff;
+    --background-card: rgba(255, 255, 255, 0.8);
+    --text-primary: #1e1e24;
+    --text-secondary: #5c5c6d;
+    --text-muted: #8c8c9e;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --hover-color: rgba(0, 0, 0, 0.03);
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
