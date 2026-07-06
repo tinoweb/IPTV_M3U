@@ -72,6 +72,16 @@
     color: white;
 }
 
+/* Seções de conteúdo */
+.movies-section,
+.series-section,
+.favorites-section {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    height: 100%;
+}
+
 /* Grids de conteúdo */
 .movies-grid,
 .series-grid,
@@ -589,6 +599,14 @@
 .loading-tip {
     font-size: 0.9em;
     color: #ccc;
+}
+
+/* Esconder botões mobile no desktop */
+@media (min-width: 769px) {
+    .toggle-channels,
+    .mobile-close-btn {
+        display: none;
+    }
 }
 
 

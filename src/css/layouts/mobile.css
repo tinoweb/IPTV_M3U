@@ -50,25 +50,51 @@
 
     /* Botão para abrir/fechar a lista de canais */
     .toggle-channels {
+        display: flex;
         position: fixed;
-        left: var(--spacing-md);
-        bottom: var(--spacing-md);
-        width: 48px;
-        height: 48px;
+        right: var(--spacing-md);
+        bottom: 80px; /* Acima do menu de navegação inferior */
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
-        background: var(--primary-color);
-        color: var(--text-light);
+        background: linear-gradient(135deg, #ff4081, #f50057);
+        color: white;
         border: none;
         cursor: pointer;
         z-index: var(--z-floating);
-        display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 16px rgba(255, 64, 129, 0.4);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .toggle-channels:hover {
-        background: var(--secondary-color);
+        background: linear-gradient(135deg, #f50057, #ff4081);
+        transform: scale(1.05);
+    }
+
+    /* Estilo do botão de fechar e título no drawer de canais no mobile */
+    .channels-header-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .mobile-close-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 4px;
+        transition: color var(--transition-speed);
+    }
+
+    .mobile-close-btn:hover {
+        color: var(--primary-color);
     }
 
     /* Overlay para quando a lista de canais estiver aberta */

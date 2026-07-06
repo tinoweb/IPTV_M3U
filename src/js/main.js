@@ -31,10 +31,10 @@ function toggleTheme() {
 
 // Mobile sidebar controls
 function setupMobileMenu() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenuBtn = document.getElementById('toggleChannels');
     const closeSidebarBtn = document.getElementById('mobileCloseBtn');
     const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const sidebarOverlay = document.getElementById('channelsOverlay');
     const channelsList = document.getElementById('channelsList');
 
     if (!sidebar) return;
@@ -120,10 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 playChannel(channel);
             }
         } else {
-            // Auto play the first channel on index page load for convenience
-            const firstChannel = loadedChannels[0];
-            if (firstChannel && window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
-                playChannel(firstChannel);
+            // Auto play a stable, verified channel on index page load for convenience
+            const defaultChannel = loadedChannels.find(ch => ch.name.includes('SBT Nacional')) 
+                || loadedChannels.find(ch => ch.name.includes('TV Brasil'))
+                || loadedChannels[0];
+            if (defaultChannel && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/')) {
+                playChannel(defaultChannel);
             }
         }
     });

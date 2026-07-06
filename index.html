@@ -159,7 +159,7 @@
                 <div class="pix-info" style="display: none;">
                     <h3>Faça sua doação via PIX</h3>
                     <div class="pix-qr">
-                        <img src="images/qr-pix.png" alt="QR Code PIX" id="pixQR">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="QR Code PIX" id="pixQR">
                     </div>
                     <div class="pix-key">
                         <p>Chave PIX (clique para copiar):</p>
@@ -176,9 +176,14 @@
     </div>
 
     <main class="app-container">
-        <section class="channels-section">
+        <section class="channels-section" id="sidebar">
             <div class="channels-header">
-                <h2>CANAIS DISPONÍVEIS</h2>
+                <div class="channels-header-title">
+                    <h2>CANAIS DISPONÍVEIS</h2>
+                    <button id="mobileCloseBtn" class="mobile-close-btn" aria-label="Fechar lista de canais">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
                 <div class="channels-controls">
                     <input type="text" id="searchChannel" class="search-input" placeholder="Buscar canais...">
                     <div class="category-tabs-container">
